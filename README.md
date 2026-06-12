@@ -1,14 +1,14 @@
 # CheckM8 — Product Website
 
 Marketing / informational site for **CheckM8**, a voice-driven emergency
-checklist avionics research module for the Cessna CJ2.
+checklist concept.
 
 **DEMO / TRAINING ONLY — NOT FOR ACTUAL FLIGHT OPERATIONS.**
 
 Static single-page site (HTML / CSS / vanilla JS), hosted on GitHub Pages.
 
-- Product/engineering repository: https://github.com/flas-tech/cj2-voice-emergency-checklist
 - Dark/light theme, responsive, cockpit-inspired design.
+- Imagery is generic/illustrative.
 
 ## Local preview
 Open `index.html` in a browser, or serve the folder:

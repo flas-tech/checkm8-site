@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>CheckM8 — Voice-Driven Emergency Checklist for the Cessna CJ2</title>
-<meta name="description" content="CheckM8 is a dual-isolated voice emergency checklist avionics module for the Cessna CJ2: hands-free, card-defined checklists with an isolated receive tap and isolated COM3 audio output. Demo/training only." />
+<title>CheckM8 — Voice-Driven Emergency Checklist Concept</title>
+<meta name="description" content="CheckM8 is a voice-driven, hands-free emergency checklist concept for light business jets: it reads the right checklist aloud and follows your voice through every step. Demo/training only." />
 <meta property="og:title" content="CheckM8 — Voice Emergency Checklist" />
-<meta property="og:description" content="Hands-free, card-defined emergency checklists for the Cessna CJ2. Dual-isolated audio architecture. Demo/training only." />
+<meta property="og:description" content="Hands-free, voice-driven emergency checklists. Demo/training only." />
 <meta property="og:type" content="website" />
-<meta property="og:image" content="assets/wiring_diagram.png" />
+<meta property="og:image" content="assets/cockpit.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -32,7 +32,6 @@
       <a href="#architecture">Architecture</a>
       <a href="#hardware">Hardware</a>
       <a href="#status">Status</a>
-      <a class="nav__repo" href="https://github.com/flas-tech/cj2-voice-emergency-checklist" target="_blank" rel="noopener">Repo ↗</a>
     </nav>
     <button class="theme-toggle" data-theme-toggle aria-label="Switch to light mode"></button>
   </div>
@@ -44,12 +43,12 @@
   <section class="hero" id="top">
     <div class="hero__grid container">
       <div class="hero__copy">
-        <p class="eyebrow"><span class="dot dot--amber"></span> Cessna CJ2 · Voice-driven · Hands-free</p>
+        <p class="eyebrow"><span class="dot dot--amber"></span> Voice-driven · Hands-free · Demo</p>
         <h1>Run the emergency checklist <em>without taking your hands off the airplane.</em></h1>
-        <p class="lede">CheckM8 is a panel-mounted avionics module that speaks and listens. It reads the right checklist aloud, follows your voice through every step, and drives a split-legend annunciator — all defined per aircraft by a swappable config card.</p>
+        <p class="lede">CheckM8 is a concept for a panel module that speaks and listens. It reads the right checklist aloud, follows your voice through every step, and drives a clear status annunciator — all defined per aircraft by a swappable config card.</p>
         <div class="hero__cta">
           <a class="btn btn--primary" href="#how">See how it works</a>
-          <a class="btn btn--ghost" href="https://github.com/flas-tech/cj2-voice-emergency-checklist" target="_blank" rel="noopener">View source</a>
+          <a class="btn btn--ghost" href="#architecture">Explore the concept</a>
         </div>
         <p class="hero__note">Demo / training research project — not for actual flight operations.</p>
       </div>
@@ -76,10 +75,10 @@
   <!-- TRUST STRIP -->
   <section class="strip">
     <div class="container strip__inner">
-      <div class="strip__item"><span class="strip__k">Dual-isolated</span><span class="strip__v">RX tap + COM3 TX, galvanically isolated</span></div>
+      <div class="strip__item"><span class="strip__k">Hands-free</span><span class="strip__v">Voice in, voice out — eyes stay up</span></div>
       <div class="strip__item"><span class="strip__k">Card-defined</span><span class="strip__v">Every checklist set per aircraft</span></div>
       <div class="strip__item"><span class="strip__k">Dark cockpit</span><span class="strip__v">Legends defined-OFF at boot</span></div>
-      <div class="strip__item"><span class="strip__k">Open hardware</span><span class="strip__v">Spec, firmware & Gerbers public</span></div>
+      <div class="strip__item"><span class="strip__k">Concept demo</span><span class="strip__v">Research & training only</span></div>
     </div>
   </section>
 
@@ -97,12 +96,12 @@
         <article class="step">
           <span class="step__num">02</span>
           <h3>It reads &amp; listens</h3>
-          <p>CheckM8 announces each step over a dedicated isolated audio channel and listens on an isolated receive tap, advancing as you confirm each action by voice.</p>
+          <p>CheckM8 announces each step over a dedicated audio channel and listens for your responses, advancing as you confirm each action by voice.</p>
         </article>
         <article class="step">
           <span class="step__num">03</span>
           <h3>Annunciator stays honest</h3>
-          <p>A split-legend annunciator shows OFF (white, top) and FAULT (amber, bottom). Active output inhibits the fault legend per AC 25-11B, and both halves are defined-OFF at boot.</p>
+          <p>A split-legend annunciator shows OFF (white, top) and FAULT (amber, bottom). Active output inhibits the fault legend, and both halves are defined-OFF at boot.</p>
         </article>
         <article class="step">
           <span class="step__num">04</span>
@@ -118,30 +117,30 @@
     <div class="container arch">
       <div class="arch__text">
         <p class="eyebrow"><span class="dot dot--teal"></span> Architecture</p>
-        <h2 class="section__title">Two isolated audio paths. Zero back-feed.</h2>
-        <p class="lede lede--tight">CheckM8 touches the audio panel through two separate, galvanically isolated channels — so it can hear and speak without ever keying or back-driving the panel.</p>
+        <h2 class="section__title">Listen and speak — without getting in the way.</h2>
+        <p class="lede lede--tight">The concept keeps the checklist module separate from the aircraft's primary audio so it can hear and speak without interfering with normal panel operation.</p>
         <ul class="arch__list">
           <li>
             <span class="arch__tag arch__tag--rx">RX</span>
-            <div><strong>Isolated receive tap</strong> — a high-impedance, receive-only tap through a 600&Omega; isolation transformer into the codec ADC. It can listen, but physically cannot inject onto the panel.</div>
+            <div><strong>Receive only</strong> — a listen-only input so the module can follow voice confirmations without injecting onto the panel.</div>
           </li>
           <li>
             <span class="arch__tag arch__tag--tx">TX</span>
-            <div><strong>Isolated COM3 output</strong> — I²S → DAC/line driver → 600:600 isolation transformer → line-level out to a dedicated COM3-style audio-panel channel. The onboard speaker is removed; audio goes to the panel only.</div>
+            <div><strong>Dedicated output</strong> — spoken prompts route to a separate audio channel, kept apart from the primary radios.</div>
           </li>
           <li>
             <span class="arch__tag">SD</span>
-            <div><strong>Dual microSD</strong> — config card + data card on a shared 1-bit SDMMC bus. The card defines everything per aircraft.</div>
+            <div><strong>Removable storage</strong> — a config card defines the checklists and a separate data card keeps the record. The card defines everything per aircraft.</div>
           </li>
           <li>
-            <span class="arch__tag">SoC</span>
-            <div><strong>ESP32-S3 (N16R8)</strong> — on-device voice processing with 8&nbsp;MB PSRAM, dual I²S engines for the independent input and output paths.</div>
+            <span class="arch__tag">CPU</span>
+            <div><strong>On-device processing</strong> — voice recognition and prompts run locally, with independent input and output paths.</div>
           </li>
         </ul>
       </div>
       <figure class="arch__figure">
-        <img src="assets/wiring_diagram.png" alt="CheckM8 system wiring diagram showing the isolated receive tap, isolated COM3 audio output, dual microSD, ESP32-S3, and split-legend annunciator." loading="lazy" />
-        <figcaption>System wiring — isolated RX tap, isolated COM3 TX output, dual microSD, and split-legend annunciator.</figcaption>
+        <img src="assets/cockpit.png" alt="A dark cockpit avionics panel at night with softly backlit amber and teal controls." loading="lazy" />
+        <figcaption>Designed for the low-light cockpit — voice first, eyes up. Illustrative image.</figcaption>
       </figure>
     </div>
   </section>
@@ -150,22 +149,22 @@
   <section class="section" id="hardware">
     <div class="container arch arch--reverse">
       <figure class="arch__figure">
-        <img src="assets/pcb_preview.png" alt="Rendered preview of the CheckM8 custom 2-layer prototype baseboard, 100 by 80 millimeters, showing the ESP32-S3 DevKitC socket, audio in/out chains, dual SD slots, lamp drivers, and connectors." loading="lazy" />
-        <figcaption>Custom 2-layer prototype baseboard (Rev A, 100×80&nbsp;mm) — Gerbers generated programmatically.</figcaption>
+        <img src="assets/pcb_generic.png" alt="A compact electronics board with surface-mount components, headers, and storage connectors." loading="lazy" />
+        <figcaption>Built around a compact, single-board design. Illustrative image.</figcaption>
       </figure>
       <div class="arch__text">
         <p class="eyebrow"><span class="dot dot--amber"></span> Hardware</p>
-        <h2 class="section__title">A prototype you can actually build.</h2>
-        <p class="lede lede--tight">The integration baseboard hosts an ESP32-S3 DevKitC and codec/DAC breakouts on header sockets, with the isolation transformers, line driver, lamp-driver MOSFETs, connectors and power on the board itself.</p>
+        <h2 class="section__title">A compact, single-board concept.</h2>
+        <p class="lede lede--tight">The concept centers on a small integration board that combines on-device voice processing, separate audio input and output, removable storage and annunciator drivers in one panel-friendly package.</p>
         <div class="specs">
-          <div class="spec"><span class="spec__k">Board</span><span class="spec__v">2-layer, 100×80 mm</span></div>
-          <div class="spec"><span class="spec__k">Compute</span><span class="spec__v">ESP32-S3-DevKitC-1 N16R8</span></div>
-          <div class="spec"><span class="spec__k">Input</span><span class="spec__v">PCM1808 I²S ADC + iso xfmr</span></div>
-          <div class="spec"><span class="spec__k">Output</span><span class="spec__v">PCM5102A DAC + iso xfmr (COM3)</span></div>
-          <div class="spec"><span class="spec__k">Storage</span><span class="spec__v">2× microSD (config + data)</span></div>
-          <div class="spec"><span class="spec__k">Outputs</span><span class="spec__v">Split-legend lamp drivers</span></div>
+          <div class="spec"><span class="spec__k">Form</span><span class="spec__v">Compact single board</span></div>
+          <div class="spec"><span class="spec__k">Compute</span><span class="spec__v">On-device voice processing</span></div>
+          <div class="spec"><span class="spec__k">Input</span><span class="spec__v">Receive-only audio</span></div>
+          <div class="spec"><span class="spec__k">Output</span><span class="spec__v">Dedicated audio channel</span></div>
+          <div class="spec"><span class="spec__k">Storage</span><span class="spec__v">Removable config + data cards</span></div>
+          <div class="spec"><span class="spec__k">Outputs</span><span class="spec__v">Split-legend annunciator</span></div>
         </div>
-        <p class="hardware__note">Full BOM, RS-274X Gerbers and Excellon drill are in the public repository.</p>
+        <p class="hardware__note">A concept design — not a buildable product specification.</p>
       </div>
     </div>
   </section>
@@ -178,19 +177,19 @@
       <div class="status__grid">
         <article class="status__card status__card--warn">
           <h3>Demo / training only</h3>
-          <p>CheckM8 is an engineering and research project. It is <strong>not for actual flight operations</strong>, is not a certified device, and nothing here is operational or safety-of-flight guidance.</p>
+          <p>CheckM8 is an engineering and research concept. It is <strong>not for actual flight operations</strong>, is not a certified device, and nothing here is operational or safety-of-flight guidance.</p>
         </article>
         <article class="status__card">
-          <h3>Certification posture</h3>
-          <p>The intended depth targets DO-160 environmental qualification (potentially NORSEE), while avoiding DO-178. The isolated COM3 output is more invasive than a pure receive tap and would likely require an STC or field approval — not a logbook minor alteration.</p>
+          <h3>Concept stage</h3>
+          <p>This is an early-stage exploration of how a voice-driven checklist could work. It is not a finished product and has not been qualified, tested, or approved for use in any aircraft.</p>
         </article>
         <article class="status__card">
-          <h3>Open substantiation items</h3>
-          <p>Three items remain open: output isolation and failure modes, non-interference with required COM radios, and audio masking / intelligibility. These must be substantiated before any installation is considered.</p>
+          <h3>Open questions remain</h3>
+          <p>Real-world use would raise questions around reliability, non-interference with required equipment, and audio clarity. These would all need to be addressed before any installation could be considered.</p>
         </article>
         <article class="status__card">
-          <h3>Intellectual property</h3>
-          <p>A provisional patent draft and trademark research exist in the repository. The audio-output path was added after the original prior-art search and needs an attorney refresh before any nonprovisional filing. This material is not legal advice.</p>
+          <h3>Not advice</h3>
+          <p>Nothing on this page is operational, safety-of-flight, regulatory, or legal advice. Any real-world application would require appropriate professional and regulatory review.</p>
         </article>
       </div>
     </div>
@@ -199,9 +198,9 @@
   <!-- CTA -->
   <section class="cta">
     <div class="container cta__inner">
-      <h2>Everything is open. Dig into the source.</h2>
-      <p>Master spec, firmware, wiring diagram, prototype BOM and fab-ready Gerbers — all in one public repository.</p>
-      <a class="btn btn--primary btn--lg" href="https://github.com/flas-tech/cj2-voice-emergency-checklist" target="_blank" rel="noopener">Open the repository ↗</a>
+      <h2>A hands-free idea for the cockpit.</h2>
+      <p>CheckM8 explores how voice could carry a pilot through the right emergency checklist — eyes up, hands on the airplane.</p>
+      <a class="btn btn--primary btn--lg" href="#how">See how it works</a>
     </div>
   </section>
 
@@ -216,12 +215,12 @@
       </svg>
       <span>CheckM8</span>
     </div>
-    <p class="footer__disclaimer"><strong>DEMO / TRAINING ONLY — NOT FOR ACTUAL FLIGHT OPERATIONS.</strong> CheckM8 is an experimental research project for the Cessna CJ2. Not a certified avionics device. Nothing on this page is operational, safety-of-flight, or legal advice.</p>
+    <p class="footer__disclaimer"><strong>DEMO / TRAINING ONLY — NOT FOR ACTUAL FLIGHT OPERATIONS.</strong> CheckM8 is an experimental research concept. Not a certified avionics device. Nothing on this page is operational, safety-of-flight, or legal advice.</p>
     <nav class="footer__links" aria-label="Footer">
       <a href="#how">How it works</a>
       <a href="#architecture">Architecture</a>
       <a href="#hardware">Hardware</a>
-      <a href="https://github.com/flas-tech/cj2-voice-emergency-checklist" target="_blank" rel="noopener">GitHub repository</a>
+      <a href="#status">Status</a>
     </nav>
     <p class="footer__copy">© <span id="year"></span> CheckM8 project · Published on GitHub Pages</p>
   </div>
